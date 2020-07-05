@@ -5,14 +5,20 @@ public class Aircraft {
 	protected long id;
 	protected String name;
 	protected Coordinates coordinates;
-	private long idCounter;
+	static private long idCounter = 0;
 
 	protected Aircraft(String name, Coordinates coordinates) {
+		this.id = nextId();
 		this.name = name;
 		this.coordinates = coordinates; // add id
 	}
 
+	private void setCoordinates()
+	{
+	}
+
 	private long nextId() {
-		return (this.id + 1); // mb change this id
+		idCounter++;
+		return (idCounter); // mb change this id
 	}
 }

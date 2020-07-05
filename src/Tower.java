@@ -4,19 +4,31 @@ import java.util.ArrayList;
 
 public class Tower {
 
-	private ArrayList<Flyable> observers = new ArrayList<Flyable>();
+	private ArrayList<Flyable> observers;
 	
 	public void register(Flyable flyable) {
 		this.observers.add(flyable);
 	}
 
 	public void unregister(Flyable flyable) {	
-		this.observers.remove(flyable);
+		if (observers.isEmpty() == false)
+		{
+			this.observers.remove(flyable);
+		}
+	}
+
+	public Tower()
+	{
+		this.observers = new ArrayList<Flyable>();
 	}
 
 	protected void conditionsChanged() {
-		for (Flyable flyable : observers) {
-			flyable.updateConditions();
+		if (observers.isEmpty() == false)
+		{
+			for (int i = 0; i < observers.size(); i++)
+			{
+				observers.get(i).updateConditions();
+			}
 		}
 	}
 }

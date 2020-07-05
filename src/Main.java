@@ -75,9 +75,34 @@ public class Main {
 			throw e;
 		}
 		if (isScenarioValid(scenario) == false)
+		{
 			System.out.println("false");
+			return;
+		}
 		else
+		{
 			System.out.println("true");
+			startSimulation(scenario);
+		}
+	}
+
+	private static void startSimulation(ArrayList<String> scenario)
+	{
+		int numberOfSimulations;
+		int size = scenario.size();
+		AircraftFactory af = new AircraftFactory();
+		
+		WeatherTower wt = new WeatherTower();	
+		for (int i = 1; i < size; i++)
+		{
+			Flyable f = af.newAircraft("Helicopter", "H1", 51, 55, 50);
+			f.registerTower(wt);
+		}
+		numberOfSimulations = 20; // Integer.toString(scenario.get(0));
+		for (int j = 1; j < numberOfSimulations; j++)
+		{
+			wt.changeWeather();
+		}
 	}
 	
 	
